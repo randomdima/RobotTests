@@ -23,9 +23,11 @@ namespace RobotTests
         {
             while (!token.IsCancellationRequested)
             {
-                await robot.Motors.SetWheelMotors(100, -100);
+                await robot.Motors.SetWheelMotors(50, -50);
+                await robot.Motors.MoveLift(MoveDirection.Up, MotorSpeed.Medium);
                 await Task.Delay(500, token);
-                await robot.Motors.SetWheelMotors(-100, 100);
+                await robot.Motors.SetWheelMotors(-50, 50);
+                await robot.Motors.MoveLift(MoveDirection.Down, MotorSpeed.Medium);
                 await Task.Delay(500, token);
             }
         }
@@ -34,12 +36,16 @@ namespace RobotTests
         {
             while (!token.IsCancellationRequested)
             {
-                await robot.Screen.DisplaySolidColor(Color.Blue, 0, false);
-                await Task.Delay(200, token);
                 await robot.Screen.DisplaySolidColor(Color.Red, 0, false);
-                await Task.Delay(200, token);
+                await Task.Delay(100, token);
+                await robot.Screen.DisplaySolidColor(Color.Yellow, 0, false);
+                await Task.Delay(100, token);
                 await robot.Screen.DisplaySolidColor(Color.Green, 0, false);
-                await Task.Delay(200, token);
+                await Task.Delay(100, token);
+                await robot.Screen.DisplaySolidColor(Color.Blue, 0, false);
+                await Task.Delay(100, token);
+                await robot.Screen.DisplaySolidColor(Color.White, 0, false);
+                await Task.Delay(100, token);
             }
         }
     }
