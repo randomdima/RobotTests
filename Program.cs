@@ -13,12 +13,10 @@ namespace RobotTests
     {
         static async Task Main()
         {
-            await using (var robot = await RobotScheduler.Connect())
-            {
-                robot.AddBehavior(ParrotModeScreen);
-                robot.AddBehavior(ParrotModeWheels);
-                Console.ReadKey();
-            }
+            await using var robot = await RobotScheduler.Connect();
+            robot.AddBehavior(ParrotModeScreen);
+            robot.AddBehavior(ParrotModeWheels);
+            Console.ReadKey();
         }
 
         static async Task ParrotModeWheels(Robot robot, CancellationToken token)
