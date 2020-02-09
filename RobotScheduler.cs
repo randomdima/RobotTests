@@ -44,7 +44,7 @@ namespace RobotTests
                 await Task.WhenAll(_tasks);
                 await _robot.Motors.StopAllMotors();
             }
-            finally
+            catch
             {
                 _robot.Dispose();
                 _tokenSource.Dispose();
